@@ -1,0 +1,7 @@
+- name: create directory for mount
+  file:
+    state: directory
+    path: "{{ nfs_client_path }}"
+    owner: "{{ nfs_client_path_uid }}"
+    group: "{{ nfs_client_path_gid }}"
+    mode: "{{ nfs_client_path_mode }}"

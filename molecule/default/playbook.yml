@@ -1,0 +1,12 @@
+- name: Converge
+  hosts: all
+  become: True
+  roles:
+    - role: role-nfs-client
+  vars:
+
+    nfs_client_path: /var/www
+    nfs_client_path_uid: 33
+    nfs_client_path_gid: 33
+    nfs_client_path_mode: "0770"
+    nfs_client_source: "172.16.0.5:/srv/nfs/foobar"

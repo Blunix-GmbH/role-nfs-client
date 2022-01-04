@@ -1,0 +1,22 @@
+- name: install nfs-common
+  apt:
+    name: nfs-common
+    state: present
+
+- name: create directory for mount
+  file:
+    state: directory
+    path: "{{ nfs_client_path }}"
+    owner: "{{ nfs_client_path_uid }}"
+    group: "{{ nfs_client_path_gid }}"
+    mode: "{{ nfs_client_path_mode }}" 
+
+- name: mount directory from nfs server
+  mount:
+    path: "{{ nfs_client_path }}"
+    src: "{{ nfs_client_src }}"
+    fstype: nfs4
+    opts: "{{ nfs_client_opts }}"
+    dump: "{{ nfs_client_dump }}"
+    passno: "{{ nfs_client_passno }}"
+    state: mounted
